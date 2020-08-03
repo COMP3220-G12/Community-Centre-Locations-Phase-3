@@ -14,7 +14,7 @@ public class Distance {
         this.cCentres = cCentres;
 
     }
-
+    //this is a test comment
     //create a list for the nearest community centres
     public List<Centres> near(List<Centres> cCentres)
     {
