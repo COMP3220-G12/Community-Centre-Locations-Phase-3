@@ -1,8 +1,8 @@
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 class Load implements Template
 {
@@ -38,7 +38,16 @@ class Load implements Template
 
     public void sort() // sort according to primary key defined in RecordTemplate
     {
-        recordList.sort((Record r1, Record r2)->r1.getValue(PRIMARY_KEY_FIELD_INDEX).compareTo(r2.getValue(PRIMARY_KEY_FIELD_INDEX)));
+        if(TYPES[PRIMARY_KEY_FIELD_INDEX] == "Integer")
+            recordList.sort(Comparator.comparing((Record r) -> Integer.parseInt(r.getValue(PRIMARY_KEY_FIELD_INDEX))));
+        else if(TYPES[PRIMARY_KEY_FIELD_INDEX] == "String")
+            recordList.sort(Comparator.comparing((Record r) -> r.getValue(PRIMARY_KEY_FIELD_INDEX)));
+        else if(TYPES[PRIMARY_KEY_FIELD_INDEX] == "Double")
+            recordList.sort(Comparator.comparing((Record r) -> Double.parseDouble(r.getValue(PRIMARY_KEY_FIELD_INDEX))));
+        else if(TYPES[PRIMARY_KEY_FIELD_INDEX] == "Long")
+            recordList.sort(Comparator.comparing((Record r) -> Long.parseLong(r.getValue(PRIMARY_KEY_FIELD_INDEX))));
+        else if(TYPES[PRIMARY_KEY_FIELD_INDEX] == "Float")
+            recordList.sort(Comparator.comparing((Record r) -> Float.parseFloat(r.getValue(PRIMARY_KEY_FIELD_INDEX))));
     }
 
     public int size()
