@@ -19,7 +19,7 @@ class Load implements Template
         return recordList.get(n);
     }
 
-    public int loadRecords()
+    public ArrayList<Record> loadRecords()
     {
         String line = "";
         try (BufferedReader br = new BufferedReader(new FileReader(FILENAME)))
@@ -33,7 +33,7 @@ class Load implements Template
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return recordList.size();
+        return recordList;
     }
 
     public void sort() // sort according to primary key defined in RecordTemplate
