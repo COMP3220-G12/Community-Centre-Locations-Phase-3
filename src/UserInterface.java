@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 class UserInterface extends Visualizer
 {
@@ -44,6 +45,16 @@ class UserInterface extends Visualizer
                     records.sort();
                     displayRecords();
                     break;
+                case 7:
+                    System.out.print("Enter latitude of your address: ");
+                    double lat1 = sc.nextDouble();
+                    System.out.print("Enter long of your address: ");
+                    double lon1 = sc.nextDouble();
+                    Distance nearest = new Distance(lat1, lon1, newRecordList);
+                    ArrayList<Record> closest = nearest.near();
+                    if (closest.size() == 0)
+                        System.out.println("There are NO Community Centres that are 5km or less to your location.");
+                    break;
                 case 0:
                     done = true;
                     break;
@@ -62,6 +73,7 @@ class UserInterface extends Visualizer
         System.out.println("4. Display last record.");
         System.out.println("5. Display all records.");
         System.out.println("6. Display sorted records.");
+        System.out.println("7. Find nearest community centre (straight line distance).");
         System.out.println("0. Exit");
     }
 
@@ -74,5 +86,7 @@ class UserInterface extends Visualizer
     {
         System.out.println(records);
     }
+
+
 
 }

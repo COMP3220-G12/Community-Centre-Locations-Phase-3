@@ -7,6 +7,5 @@ class Main
         System.out.println("Entering console mode...");
         data = new UserInterface();
         data.displayViewer();
-        //this comment is to resolve test issue
     }
 }
