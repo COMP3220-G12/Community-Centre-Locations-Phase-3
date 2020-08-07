@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+//This file displays an interactive menu for the user
 class UserInterface extends Visualizer
 {
 
