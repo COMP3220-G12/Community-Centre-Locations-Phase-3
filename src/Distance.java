@@ -22,8 +22,9 @@ public class Distance {
         for(Record i: cCentres)
         {
             //latitude and longitude for each centre
-            double lat2 = i.getY();
-            double lon2 = i.getX();
+            double lat2 = Double.parseDouble(i.getValue(4));
+            double lon2 = Double.parseDouble(i.getValue(3));
+            ;
             //distance
             double dist = calcDist(lat2, lon2, cCentres);
             if(dist<=5)
