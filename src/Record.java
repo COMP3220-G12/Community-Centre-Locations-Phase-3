@@ -51,14 +51,6 @@ public class Record implements Template
     {
         return recordMap.get(fieldIndex).value;
     }
-    public double getX()
-    {
-        return Double.parseDouble(recordMap.get(3).value);
-    }
-    public double getY()
-    {
-        return Double.parseDouble(recordMap.get(4).value);
-    }
 
     class Field
     {
