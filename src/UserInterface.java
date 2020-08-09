@@ -55,7 +55,7 @@ class UserInterface extends Visualizer
                 case 7:
                     System.out.print("Enter latitude of your address: ");
                     double lat1 = sc.nextDouble();
-                    System.out.print("Enter long of your address: ");
+                    System.out.print("Enter longitude of your address: ");
                     double lon1 = sc.nextDouble();
                     Distance nearest = new Distance(lat1, lon1, newRecordList);
                     ArrayList<Record> closest = nearest.near();
