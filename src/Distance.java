@@ -1,5 +1,5 @@
 //This class is designed to display between the user and the nearest community centres using latitude and longitude
-//It maintains high cohesion since it only contains elements related to computing the distance. 
+//It maintains high cohesion since it only contains elements related to computing the distance.
 import java.util.ArrayList;
 
 public class Distance {
