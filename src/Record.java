@@ -1,10 +1,18 @@
+/** Record is a class that stores individual records using HashMaps to store Keys and records then map them
+ ** This way we will have an array of records to be accessed by mapping to the keys.
+ **It maintains High cohesion as it has all the elements related to records data structure, record field defining, getting and setting record attributes, etc.
+*/
+
 import java.util.HashMap;
 import java.util.StringTokenizer;
 import java.util.Iterator;
 
 public class Record implements Template
 {
+    // to create a Hashmap with Keys and arry of record
     public HashMap<Integer, Field> recordMap;
+    // create a blank record, then each record will have it's own fields
+    // each line is a record and fields are seperated by ","
     public Record (String line)
     {
         recordMap = new HashMap<>();
@@ -14,6 +22,8 @@ public class Record implements Template
             recordMap.put(i, new Field(TYPES[i], LABELS[i], st.nextToken()));
         }
     }
+    
+    //set method to set the fields values
     public boolean setFieldValue(int fieldIndex, String newValue)
     {
         if (fieldIndex < 0 || fieldIndex > NUMBER_OF_FIELDS) return false;
@@ -24,7 +34,7 @@ public class Record implements Template
 
         return true;
     }
-
+    //override toString
     public String toString()
     {
         String line="";
@@ -38,7 +48,7 @@ public class Record implements Template
         }
         return line;
     }
-
+    //get methods
     public String getType(int fieldIndex)
     {
         return recordMap.get(fieldIndex).type;
@@ -51,7 +61,7 @@ public class Record implements Template
     {
         return recordMap.get(fieldIndex).value;
     }
-
+    // inner class to define a filed (the bulding bloack of a record )
     class Field
     {
         public String type;
