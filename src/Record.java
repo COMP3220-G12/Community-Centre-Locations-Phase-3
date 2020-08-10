@@ -9,61 +9,11 @@ import java.util.Iterator;
 
 public class Record implements Template
 {
-    // to create a Hashmap with Keys and arry of record
-    public HashMap<Integer, Field> recordMap;
-    // create a blank record, then each record will have it's own fields
-    // each line is a record and fields are seperated by ","
-    public Record (String line)
+  
+  // inner class to define a filed (the building block of a record)
+   class Field
     {
-        recordMap = new HashMap<>();
-        StringTokenizer st = new StringTokenizer(line, DELIMITER);
-        for (int i=0; i<NUMBER_OF_FIELDS; i++)
-        {
-            recordMap.put(i, new Field(TYPES[i], LABELS[i], st.nextToken()));
-        }
-    }
-    
-    //set method to set the fields values
-    public boolean setFieldValue(int fieldIndex, String newValue)
-    {
-        if (fieldIndex < 0 || fieldIndex > NUMBER_OF_FIELDS) return false;
-
-        Field newField = new Field(recordMap.get(fieldIndex).type, recordMap.get(fieldIndex).label, newValue);
-
-        recordMap.replace(fieldIndex, newField);
-
-        return true;
-    }
-    //override toString
-    public String toString()
-    {
-        String line="";
-        Iterator<Integer> keySetIterator = recordMap.keySet().iterator();
-        Integer key;
-        while(keySetIterator.hasNext())
-        {
-            key = keySetIterator.next();
-            if (key == 0) line+=recordMap.get(key);
-            else line+=DELIMITER+recordMap.get(key);
-        }
-        return line;
-    }
-    //get methods
-    public String getType(int fieldIndex)
-    {
-        return recordMap.get(fieldIndex).type;
-    }
-    public String getLabel(int fieldIndex)
-    {
-        return recordMap.get(fieldIndex).label;
-    }
-    public String getValue(int fieldIndex)
-    {
-        return recordMap.get(fieldIndex).value;
-    }
-    // inner class to define a filed (the bulding bloack of a record )
-    class Field
-    {
+        //filed attributes
         public String type;
         public String label;
         public String value;
@@ -79,4 +29,67 @@ public class Record implements Template
             return " " + label + ": " + value;
         }
     }
+  
+    // to create a Hashmap with Keys and arry of record
+    public HashMap<Integer, Field> recordMap;
+    // create a blank record, then each record will have it's own fields
+    // each line is a record and fields are seperated by ","
+    public Record (String line)
+    {
+        recordMap = new HashMap<>();
+        StringTokenizer st = new StringTokenizer(line, DELIMITER);
+        for (int i=0; i<NUMBER_OF_FIELDS; i++)
+        {
+            recordMap.put(i, new Field(TYPES[i], LABELS[i], st.nextToken()));
+        }
+    }
+    //set method to set the fields values
+    public boolean setFieldValue(int fieldIndex, String newValue)
+    {
+        if (fieldIndex < 0 || fieldIndex > NUMBER_OF_FIELDS) return false;
+
+        Field newField = new Field(recordMap.get(fieldIndex).type, recordMap.get(fieldIndex).label, newValue);
+
+        recordMap.replace(fieldIndex, newField);
+
+        return true;
+    }
+  
+    //get methods
+    public String getType(int fieldIndex)
+    {
+        return recordMap.get(fieldIndex).type;
+    }
+    public String getLabel(int fieldIndex)
+    {
+        return recordMap.get(fieldIndex).label;
+    }
+    public String getValue(int fieldIndex)
+    {
+        return recordMap.get(fieldIndex).value;
+    }
+    public double getX()
+    {
+        return Double.parseDouble(recordMap.get(3).value);
+    }
+    public double getY()
+    {
+        return Double.parseDouble(recordMap.get(4).value);
+    }
+    
+     //override toString
+    public String toString()
+    {
+        String line="";
+        Iterator<Integer> keySetIterator = recordMap.keySet().iterator();
+        Integer key;
+        while(keySetIterator.hasNext())
+        {
+            key = keySetIterator.next();
+            if (key == 0) line+=recordMap.get(key);
+            else line+=DELIMITER+recordMap.get(key);
+        }
+        return line;
+    }
+
 }
