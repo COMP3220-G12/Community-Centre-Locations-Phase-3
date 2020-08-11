@@ -10,7 +10,7 @@ import java.util.Iterator;
 public class Record implements Template
 {
   
-  // inner class to define a filed (the building block of a record)
+  // inner class to define a field (the building block of a record)
    class Field
     {
         //filed attributes
